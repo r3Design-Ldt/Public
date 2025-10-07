@@ -79,4 +79,46 @@ document.addEventListener('DOMContentLoaded', () => {
   heroAnimation.appendChild(particleField);
 
   document.body.appendChild(heroAnimation);
+
+  // Inject an accessible hamburger toggle for mobile navigation
+  const navEl = document.querySelector('nav');
+  if (navEl) {
+    const toggle = document.createElement('button');
+    toggle.className = 'nav-toggle';
+    toggle.type = 'button';
+    toggle.setAttribute('aria-controls', 'main-navigation');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Toggle navigation');
+    toggle.innerHTML = '<svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="18" height="2" rx="1" fill="currentColor"/><rect y="5" width="18" height="2" rx="1" fill="currentColor"/><rect y="10" width="18" height="2" rx="1" fill="currentColor"/></svg>';
+
+    // mark the nav list for aria reference
+    const navList = navEl.querySelector('ul');
+    if (navList) {
+      navList.id = 'main-navigation';
+    }
+
+    navEl.appendChild(toggle);
+
+    const setExpanded = (expanded) => {
+      toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      if (expanded) navEl.classList.add('nav-open'); else navEl.classList.remove('nav-open');
+    };
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      setExpanded(!isOpen);
+    });
+
+    // Close nav when a link is clicked (mobile UX)
+    navList && navList.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') setExpanded(false);
+    });
+
+    // allow ESC to close when nav is open
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setExpanded(false);
+      }
+    });
+  }
 });
