@@ -80,6 +80,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.body.appendChild(heroAnimation);
 
+  // Subtle scroll progress indicator under the nav
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  document.body.appendChild(progressBar);
+  const updateProgress = () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const p = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = p + '%';
+  };
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // Side images: fade/scale based on proximity to viewport center
+  const sideImages = document.querySelectorAll('.side-image');
+  if (sideImages.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('is-visible');
+        else e.target.classList.remove('is-visible');
+      });
+    }, { threshold: 0.1 });
+    sideImages.forEach(img => io.observe(img));
+
+    const updateSideFX = () => {
+      const vh = window.innerHeight;
+      sideImages.forEach(img => {
+        const r = img.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        const dist = Math.abs(center - vh / 2);
+        const norm = Math.min(1, dist / (vh / 2));
+        const scale = 0.97 + (1 - norm) * 0.06; // 0.97..1.03
+        const opacity = 0.6 + (1 - norm) * 0.4; // 0.6..1
+        img.style.transform = `scale(${scale.toFixed(3)})`;
+        img.style.opacity = opacity.toFixed(2);
+      });
+    };
+    window.addEventListener('scroll', updateSideFX, { passive: true });
+    window.addEventListener('resize', updateSideFX);
+    updateSideFX();
+  }
+
   // Inject an accessible hamburger toggle for mobile navigation
   const navEl = document.querySelector('nav');
   if (navEl) {
@@ -121,4 +163,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Responsive offsets to avoid overlapping CTAs on shorter screens
+  const applyHeroOffsets = () => {
+    const h = window.innerHeight;
+    const root = document.documentElement;
+    if (h < 800) {
+      root.style.setProperty('--left-hero-offset', '16rem');
+      root.style.setProperty('--right-hero-offset', '42rem');
+    } else {
+      root.style.setProperty('--left-hero-offset', '22rem');
+      root.style.setProperty('--right-hero-offset', '52rem');
+    }
+  };
+  applyHeroOffsets();
+  window.addEventListener('resize', applyHeroOffsets);
 });

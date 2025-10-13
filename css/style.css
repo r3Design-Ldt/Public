@@ -11,6 +11,8 @@
   --color-white: #f5f9ff;
   --color-gray: #99a3b5;
   --nav-height: 60px;
+  --left-hero-offset: 22rem;
+  --right-hero-offset: 52rem;
 }
 
 /* Feature rows for Experience page: alternate text and media left/right */
@@ -93,6 +95,63 @@ body {
   overflow-x: hidden;
   animation: bgShift 20s ease-in-out infinite alternate;
   position: relative;
+}
+
+/* Side layout with left/right images framing the content */
+.side-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) 280px;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 0 1rem;
+}
+
+.side-col {
+  /* Keep side columns subtle and unobtrusive */
+  opacity: 0.95;
+}
+
+.side-image {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px dashed rgba(255,255,255,0.08);
+  box-shadow: 0 0 24px rgba(0,255,255,0.08);
+  aspect-ratio: 2 / 3; /* larger portrait */
+  object-fit: cover; /* if used on <img>, contain nicely */
+  position: sticky;
+  top: calc(var(--nav-height) + 20px);
+  opacity: 0.75;
+  transform: scale(0.98);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* Fine-tuned vertical placement on index without adding gaps */
+.left-hero { margin-top: var(--left-hero-offset); }
+.right-hero { margin-top: var(--right-hero-offset); }
+
+/* Active state applied by JS on scroll */
+.side-image.is-visible { opacity: 1; transform: scale(1); }
+
+/* Slightly different tint left vs right for visual balance */
+.side-col.left .side-image {
+  background: linear-gradient(135deg, rgba(0,255,255,0.08), rgba(255,255,255,0.03));
+}
+.side-col.right .side-image {
+  background: linear-gradient(135deg, rgba(255,0,200,0.08), rgba(255,255,255,0.03));
+}
+
+/* Hide side images on narrower screens; keep content full width */
+@media (max-width: 1100px) {
+  .side-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+  }
+  .side-col {
+    display: none;
+  }
 }
 
 @keyframes bgShift {
@@ -276,7 +335,7 @@ nav ul li a.active::after {
 /* Page header section - lowered opacity for more transparency while keeping animations visible */
 .page-header {
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
   position: relative;
   overflow: hidden;
   background: rgba(2, 4, 8, 0.4); /* Less opaque (more transparent) overlay */
@@ -392,7 +451,7 @@ nav ul li a.active::after {
 
 /* Generic section styling */
 section {
-  padding: 4rem 2rem;
+  padding: 3.5rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   text-align: center; /* Ensure all sections are centered */
@@ -400,7 +459,7 @@ section {
 
 .section-title {
   font-size: 2.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   position: relative;
   text-align: center;
 }
@@ -427,7 +486,7 @@ section.reveal p {
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 1.25rem;
   justify-content: center; /* Center the grid if uneven */
 }
 
@@ -435,13 +494,13 @@ section.reveal p {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.25rem;
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 0 20px rgba(0,255,255,0.05);
   position: relative;
   text-align: center;
-  max-width: 300px; /* Limit card width for better centering */
+  max-width: 280px; /* Slightly smaller so four fit */
   margin: 0 auto;
 }
 
@@ -494,6 +553,40 @@ section.reveal p {
 .gallery-grid img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 40px rgba(0,255,255,0.4);
+}
+
+/* Comparison table */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem auto 0;
+  max-width: 900px;
+}
+.compare-table th,
+.compare-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.compare-table th {
+  background: rgba(255,255,255,0.06);
+}
+
+/* Story steps */
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: center; }
+.step { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1rem; }
+.arrow { font-size: 2rem; opacity: 0.5; }
+
+/* Footer */
+footer { text-align: center; color: var(--color-gray); padding: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06); background: rgba(2,4,8,0.4); margin-top: 2rem; font-size: 0.9rem; }
+
+/* Scroll progress bar */
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--color-magenta), var(--color-cyan)); z-index: 2000; }
+
+/* Large screens: force four columns and tighten spacing */
+@media (min-width: 1200px) {
+  .card-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
+  section { padding-top: 3rem; padding-bottom: 3rem; }
+  .section-title { margin-bottom: 1.25rem; }
 }
 
 /* Team page */
