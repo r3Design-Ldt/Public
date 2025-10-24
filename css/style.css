@@ -20,6 +20,7 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+
 .feature-row {
   display: flex;
   align-items: center;
@@ -27,10 +28,12 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .feature-text {
   flex: 1 1 500px;
   min-width: 280px;
 }
+
 .feature-media {
   flex: 0 0 380px;
   display: flex;
@@ -38,6 +41,7 @@
   justify-content: center;
   min-width: 220px;
 }
+
 .feature--reverse .feature-row {
   flex-direction: row-reverse;
 }
@@ -47,8 +51,8 @@
   width: 320px;
   height: 220px;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-  border: 1px dashed rgba(255,255,255,0.06);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+  border: 1px dashed rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,12 +67,15 @@
   .feature-row {
     flex-direction: column;
   }
+
   .feature-media {
     order: 2;
   }
+
   .feature-text {
     order: 1;
   }
+
   .img-placeholder {
     width: 100%;
     max-width: 560px;
@@ -85,7 +92,7 @@
 
 body {
   font-family: 'Inter', 'Poppins', sans-serif;
-  background: 
+  background:
     radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 0, 200, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.1) 0%, transparent 70%),
@@ -115,11 +122,13 @@ body {
   width: 100%;
   display: block;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  border: 1px dashed rgba(255,255,255,0.08);
-  box-shadow: 0 0 24px rgba(0,255,255,0.08);
-  aspect-ratio: 2 / 3; /* larger portrait */
-  object-fit: cover; /* if used on <img>, contain nicely */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 24px rgba(0, 255, 255, 0.08);
+  aspect-ratio: 2 / 3;
+  /* larger portrait */
+  object-fit: cover;
+  /* if used on <img>, contain nicely */
   position: sticky;
   top: calc(var(--nav-height) + 20px);
   opacity: 0.75;
@@ -128,18 +137,27 @@ body {
 }
 
 /* Fine-tuned vertical placement on index without adding gaps */
-.left-hero { margin-top: var(--left-hero-offset); }
-.right-hero { margin-top: var(--right-hero-offset); }
+.left-hero {
+  margin-top: var(--left-hero-offset);
+}
+
+.right-hero {
+  margin-top: var(--right-hero-offset);
+}
 
 /* Active state applied by JS on scroll */
-.side-image.is-visible { opacity: 1; transform: scale(1); }
+.side-image.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
 
 /* Slightly different tint left vs right for visual balance */
 .side-col.left .side-image {
-  background: linear-gradient(135deg, rgba(0,255,255,0.08), rgba(255,255,255,0.03));
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
 }
+
 .side-col.right .side-image {
-  background: linear-gradient(135deg, rgba(255,0,200,0.08), rgba(255,255,255,0.03));
+  background: linear-gradient(135deg, rgba(255, 0, 200, 0.08), rgba(255, 255, 255, 0.03));
 }
 
 /* Hide side images on narrower screens; keep content full width */
@@ -149,6 +167,7 @@ body {
     gap: 0;
     padding: 0;
   }
+
   .side-col {
     display: none;
   }
@@ -159,13 +178,17 @@ body {
     background-size: 100% 100%, 100% 100%, 100% 100%, auto;
     background-position: 0% 0%, 100% 100%, 50% 50%, 0 0;
   }
+
   100% {
     background-size: 120% 120%, 120% 120%, 140% 140%, auto;
     background-position: 100% 100%, 0% 0%, 0% 100%, 0 0;
   }
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: 'Orbitron', 'Poppins', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -245,7 +268,7 @@ nav {
   z-index: 1000;
   background: rgba(2, 4, 8, 0.8);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 nav .logo {
@@ -261,6 +284,7 @@ nav .logo {
   align-items: center;
   justify-content: center;
 }
+
 .logo-link svg {
   width: 32px;
   height: 32px;
@@ -290,7 +314,7 @@ nav ul {
 .nav-toggle {
   display: none;
   background: transparent;
-  border: 2px solid rgba(255,255,255,0.06);
+  border: 2px solid rgba(255, 255, 255, 0.06);
   color: var(--color-white);
   width: 42px;
   height: 42px;
@@ -299,8 +323,9 @@ nav ul {
   justify-content: center;
   cursor: pointer;
 }
+
 .nav-toggle:focus {
-  outline: 3px solid rgba(0,255,255,0.12);
+  outline: 3px solid rgba(0, 255, 255, 0.12);
 }
 
 nav ul li a {
@@ -338,8 +363,10 @@ nav ul li a.active::after {
   padding: 2rem 2rem;
   position: relative;
   overflow: hidden;
-  background: rgba(2, 4, 8, 0.4); /* Less opaque (more transparent) overlay */
-  backdrop-filter: blur(5px); /* Subtle blur to enhance transparency feel */
+  background: rgba(2, 4, 8, 0.7);
+  /* Darker overlay for improved contrast */
+  backdrop-filter: blur(5px);
+  /* Subtle blur to enhance transparency feel */
 }
 
 .page-header h1 {
@@ -405,10 +432,13 @@ nav ul li a.active::after {
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
     opacity: 0.6;
   }
+
   50% {
     transform: translateY(-20px) rotate(180deg);
     opacity: 0.3;
@@ -421,7 +451,7 @@ nav ul li a.active::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     radial-gradient(2px 2px at 20px 30px, var(--color-cyan), transparent),
     radial-gradient(2px 2px at 40px 70px, var(--color-magenta), transparent),
     radial-gradient(1px 1px at 90px 40px, var(--color-cyan), transparent),
@@ -439,14 +469,20 @@ nav ul li a.active::after {
   from {
     transform: translateX(0) translateY(0);
   }
+
   to {
     transform: translateX(-30px) translateY(-15px);
   }
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: 0% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* Generic section styling */
@@ -454,7 +490,8 @@ section {
   padding: 3.5rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center; /* Ensure all sections are centered */
+  text-align: center;
+  /* Ensure all sections are centered */
 }
 
 .section-title {
@@ -477,9 +514,12 @@ section {
 
 /* Center and constrain paragraphs inside reveal sections (e.g. the "What is r3Design?" section) */
 section.reveal p {
-  margin: 0.5rem auto 1rem; /* center block and add vertical spacing */
-  max-width: 900px;         /* keep line-length readable */
-  text-align: center;      /* center-align the paragraph text */
+  margin: 0.5rem auto 1rem;
+  /* center block and add vertical spacing */
+  max-width: 900px;
+  /* keep line-length readable */
+  text-align: center;
+  /* center-align the paragraph text */
 }
 
 /* Card style used on Experience and Team pages */
@@ -487,26 +527,28 @@ section.reveal p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.25rem;
-  justify-content: center; /* Center the grid if uneven */
+  justify-content: center;
+  /* Center the grid if uneven */
 }
 
 .card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   padding: 1.25rem;
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 20px rgba(0,255,255,0.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
   position: relative;
   text-align: center;
-  max-width: 280px; /* Slightly smaller so four fit */
+  max-width: 280px;
+  /* Slightly smaller so four fit */
   margin: 0 auto;
 }
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 0 40px rgba(0,255,255,0.4);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
 }
 
 .card h3 {
@@ -538,21 +580,21 @@ section.reveal p {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  justify-content: center; /* Center the gallery grid */
+  gap: 100px;
+  justify-content: center;
 }
 
 .gallery-grid img {
   width: 100%;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0,255,255,0.1);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-grid img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(0,255,255,0.4);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
 }
 
 /* Comparison table */
@@ -562,51 +604,95 @@ section.reveal p {
   margin: 1rem auto 0;
   max-width: 900px;
 }
+
 .compare-table th,
 .compare-table td {
   padding: 0.75rem 1rem;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .compare-table th {
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 /* Story steps */
-.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: center; }
-.step { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1rem; }
-.arrow { font-size: 2rem; opacity: 0.5; }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.step {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.arrow {
+  font-size: 2rem;
+  opacity: 0.5;
+}
 
 /* Footer */
-footer { text-align: center; color: var(--color-gray); padding: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06); background: rgba(2,4,8,0.4); margin-top: 2rem; font-size: 0.9rem; }
+footer {
+  text-align: center;
+  color: var(--color-gray);
+  padding: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(2, 4, 8, 0.4);
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
 
 /* Scroll progress bar */
-.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--color-magenta), var(--color-cyan)); z-index: 2000; }
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-magenta), var(--color-cyan));
+  z-index: 2000;
+}
 
 /* Large screens: force four columns and tighten spacing */
 @media (min-width: 1200px) {
-  .card-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
-  section { padding-top: 3rem; padding-bottom: 3rem; }
-  .section-title { margin-bottom: 1.25rem; }
+  .card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .section-title {
+    margin-bottom: 1.25rem;
+  }
 }
 
 /* Team page */
 .team-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,255,255,0.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 300px; /* Limit for centering */
+  max-width: 300px;
+  /* Limit for centering */
   margin: 0 auto;
 }
 
 .team-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 0 40px rgba(0,255,255,0.4);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
 }
 
 .team-card .avatar {
@@ -661,7 +747,7 @@ footer { text-align: center; color: var(--color-gray); padding: 1.25rem; border-
   width: 100%;
   max-width: 800px;
   border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0,255,255,0.2);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
 }
 
 /* Utility classes */
@@ -685,15 +771,19 @@ footer { text-align: center; color: var(--color-gray); padding: 1.25rem; border-
 @media (max-width: 768px) {
   nav {
     padding: 0 1rem;
-    height: auto; /* allow nav to expand vertically */
+    height: auto;
+    /* allow nav to expand vertically */
     align-items: flex-start;
-    position: relative; /* logo returns to document flow */
+    position: relative;
+    /* logo returns to document flow */
   }
+
   /* logo should sit inline on mobile */
   nav .logo {
     position: static;
     margin: 0.5rem 0;
   }
+
   /* Hide nav by default on small screens; toggle will show it */
   .nav-toggle {
     display: inline-flex;
@@ -705,59 +795,76 @@ footer { text-align: center; color: var(--color-gray); padding: 1.25rem; border-
 
   nav ul {
     gap: 0.75rem;
-    display: none; /* hidden until opened */
-    flex-direction: column; /* stack links for easier tapping */
+    display: none;
+    /* hidden until opened */
+    flex-direction: column;
+    /* stack links for easier tapping */
     align-items: center;
     width: 100%;
     padding: 0.5rem 0 1rem 0;
     margin-top: 0.25rem;
-    background: rgba(2,4,8,0.9);
+    background: rgba(2, 4, 8, 0.9);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }
+
   nav.nav-open ul {
-    display: flex; /* when nav has .nav-open, show the menu */
+    display: flex;
+    /* when nav has .nav-open, show the menu */
   }
+
   nav ul li {
     width: 100%;
     text-align: center;
   }
+
   nav ul li a {
     display: block;
-    padding: 12px 16px; /* larger tap area */
+    padding: 12px 16px;
+    /* larger tap area */
     width: 100%;
   }
+
   .page-header h1 {
     font-size: 2.2rem;
   }
+
   .section-title {
     font-size: 1.8rem;
   }
+
   .btn {
     display: block;
     margin: 10px auto;
     width: 200px;
   }
+
   .cta-buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
   }
+
   .floating-orb {
     width: 30px;
     height: 30px;
   }
+
   .orb-3 {
     width: 40px;
     height: 40px;
   }
+
   .card-grid,
   .gallery-grid {
-    grid-template-columns: 1fr; /* Stack single column on mobile for better centering */
+    grid-template-columns: 1fr;
+    /* Stack single column on mobile for better centering */
   }
+
   .card,
   .team-card {
-    max-width: 100%; /* Full width on mobile */
+    max-width: 100%;
+    /* Full width on mobile */
   }
 }
