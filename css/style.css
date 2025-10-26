@@ -563,6 +563,31 @@ section.reveal p {
   margin-bottom: 1rem;
 }
 
+/* Responsive video wrapper to align videos perfectly within cards */
+.video-figure { margin: 0; }
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+}
+.video-frame video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; /* fill frame neatly */
+}
+.video-figure figcaption {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--color-gray);
+  margin-top: 0.6rem;
+}
+
 .card .icon {
   font-size: 2rem;
   margin-bottom: 0.5rem;
