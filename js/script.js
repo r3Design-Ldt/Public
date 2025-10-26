@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.15 });
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // Simple lightbox for gallery images (if present)
-  const galleryImages = document.querySelectorAll('.gallery-grid img');
-  if (galleryImages.length > 0) {
+  // Simple lightbox for gallery and diagram images (if present)
+  const lightboxImages = document.querySelectorAll('.gallery-grid img, .diagram-figure img');
+  if (lightboxImages.length > 0) {
     const lightbox = document.createElement('div');
     lightbox.id = 'lightbox';
     lightbox.style.position = 'fixed';
@@ -46,9 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(lightbox);
     const lightboxImg = lightbox.querySelector('img');
     const closeBtn = lightbox.querySelector('span');
-    galleryImages.forEach(img => {
+    lightboxImages.forEach(img => {
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || 'Expanded image';
         lightbox.style.display = 'flex';
       });
     });
@@ -57,6 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.style.display === 'flex') {
         lightbox.style.display = 'none';
       }
     });
