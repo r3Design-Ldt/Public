@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagrams • r3Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <a href="index.html" class="logo-link" aria-label="r3Design">
+        <img src="assets/img/r3DesignLogo.png" alt="r3Design logo">
+      </a>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="vision.html">Vision</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="diagrams.html" class="active">Diagrams</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="video.html">Video</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+    <header class="page-header" style="background: linear-gradient(180deg, rgba(2,4,8,0.75), rgba(2,4,8,0.75)), url('assets/img/Pages/virtual-reality-1-cutcut.jpg') center/cover no-repeat;">
+      <h1>System Diagrams</h1>
+      <p>Browse the architecture, tech stack, activity flow and key interaction diagrams.</p>
+    </header>
+
+    <section class="reveal">
+      <div class="tabs" id="diagramTabs">
+        <div class="tab-buttons" role="tablist" aria-label="Diagram navigation">
+          <button role="tab" aria-selected="true" aria-controls="tab-arch" id="tabbtn-arch" class="active">System Architecture</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-stack" id="tabbtn-stack">Tech Stack</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-activity" id="tabbtn-activity">Activity Diagram – Overall System Flow</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-vrdraw" id="tabbtn-vrdraw">VR Drawing Flow</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-dxf" id="tabbtn-dxf">DXF File Import and Rendering Flow</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-undo" id="tabbtn-undo">Undo Redo Clear</button>
+        </div>
+
+        <div class="tab-content">
+          <div id="tab-arch" class="tab-panel active" role="tabpanel" aria-labelledby="tabbtn-arch">
+            <figure class="diagram-figure">
+              <img src="assets/img/Diagrams/system-architecture.jpg" alt="System Architecture diagram" loading="lazy">
+              <figcaption>Overall system architecture for r3Design.</figcaption>
+            </figure>
+          </div>
+
+          <div id="tab-stack" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-stack" hidden>
+            <figure class="diagram-figure">
+              <img src="assets/img/Diagrams/tech-stack.jpg" alt="Tech Stack diagram" loading="lazy">
+              <figcaption>Tech stack: engine, runtimes, input and formats.</figcaption>
+            </figure>
+          </div>
+
+          <div id="tab-activity" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-activity" hidden>
+            <figure class="diagram-figure">
+              <img src="assets/img/Diagrams/activity-overall.jpg" alt="Activity Diagram – Overall System Flow" loading="lazy">
+              <figcaption>Activity diagram covering the overall system flow.</figcaption>
+            </figure>
+          </div>
+
+          <div id="tab-vrdraw" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-vrdraw" hidden>
+            <figure class="diagram-figure">
+              <img src="assets/img/Diagrams/vr-drawing-flow.jpg" alt="VR Drawing flow sequence" loading="lazy">
+              <figcaption>VR drawing sequence showing interactions and data flow.</figcaption>
+            </figure>
+          </div>
+
+          <div id="tab-dxf" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-dxf" hidden>
+            <figure class="diagram-figure">
+              <img src="assets/img/Diagrams/dxf-import-flow.jpg" alt="DXF File Import and Rendering flow sequence" loading="lazy">
+              <figcaption>DXF import pipeline through parsing and rendering.</figcaption>
+            </figure>
+          </div>
+
+          <div id="tab-undo" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-undo" hidden>
+            <figure class="diagram-figure diagram-figure--small">
+              <img src="assets/img/Diagrams/undo-redo-clear.jpg" alt="Undo Redo Clear state machine" loading="lazy">
+              <figcaption>State machine for undo, redo and clear actions.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer> Made by r3Design</footer>
+  <script src="js/script.js"></script>
+  <script>
+    // Lightweight tab controller for this page
+    (function(){
+      const container = document.getElementById('diagramTabs');
+      if(!container) return;
+      const buttons = Array.from(container.querySelectorAll('.tab-buttons [role="tab"]'));
+      const panels = Array.from(container.querySelectorAll('.tab-panel'));
+      const activate = (id) => {
+        buttons.forEach(btn => {
+          const selected = btn.id === 'tabbtn-' + id;
+          btn.classList.toggle('active', selected);
+          btn.setAttribute('aria-selected', selected ? 'true' : 'false');
+          btn.tabIndex = selected ? 0 : -1;
+        });
+        panels.forEach(p => {
+          const show = p.id === 'tab-' + id;
+          p.classList.toggle('active', show);
+          p.hidden = !show;
+        });
+      };
+      buttons.forEach(btn => btn.addEventListener('click', () => activate(btn.id.replace('tabbtn-',''))));
+      // Keyboard support
+      container.addEventListener('keydown', (e) => {
+        const i = buttons.findIndex(b => b.classList.contains('active'));
+        if (e.key === 'ArrowRight') { e.preventDefault(); buttons[(i+1)%buttons.length].click(); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); buttons[(i-1+buttons.length)%buttons.length].click(); }
+      });
+    })();
+  </script>
+</body>
+</html>
